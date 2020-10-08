@@ -13,12 +13,20 @@ header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-image: url("../images/hero-bg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 80%;
 }
 header h1 {
     font-weight: bold;
     font-size: 36px;
     color: #fce138;
     margin: 0;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 header a {
     text-decoration: none;
@@ -38,6 +46,13 @@ header nav ul li a {
     padding: 10px 15px;
     font-weight: lighter;
     font-size: 1.55vw;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+header nav ul li a:hover {
+    background: #fce138;
+    color: #024e76;
+    border-radius: 15px;
+    text-shadow: none;
 }
 footer {
     background: #fce138;
@@ -70,14 +85,18 @@ section {
     justify-content: center;
     flex-wrap: wrap;
     align-items: flex-start;
+    background-attachment: fixed;
+    background-position: 80%;
 }
 .hero-form {
-    background-color: #fce138;
+    background-color: rgba(252, 225, 56, 0.8);
     padding: 20px;
     color: #024e76;
     border: solid 3px #024e76;
+    border-radius: 15px;
     width: 40%;
     margin: 3.5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .hero-form h3 {
     font-size: 24px;
@@ -88,12 +107,18 @@ section {
 }
 .form-input {
     border: 1px solid #024e76;
+    border-radius: 15px;
     display: block;
     padding: 7px 15px;
     font-size: 16px;
     color: #024e76;
     width: 100%;
     margin-bottom: 15px;
+    background-color: rgba(255,255,255, 0.75);
+}
+.form-input:focus {
+    background-color: rgba(255,255,255, 1);
+    outline: none;
 }
 .hero-form label {
     margin: 0 5px;
@@ -103,7 +128,15 @@ section {
     background-color: #024e76;
     border: none;
     padding: 10px 20px;
-    font-size: 16px
+    font-size: 16px;
+    border-radius: 15px;
+}
+.hero-form-button:hover {
+    background-color: #39a6b2;
+}
+.contact-form button:hover {
+    color: #fce138;
+    background: #39a6b2;
 }
 .hero-cta {
     width: 35%;
@@ -117,6 +150,7 @@ section {
     font-style: italic;
     font-size: 55px;
     color: #fce138;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .intro p {
     line-height: 1.7;
@@ -130,11 +164,13 @@ section {
     margin: 50px auto;
     padding-bottom: 50px;
     width: 80%;
-    border-bottom: 1px solid #39a6b2;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+}
+.step:not(:last-child) {
+    border-bottom: 1px solid #39a6b2;
 }
 .steps {
     background: #fce138;
@@ -261,6 +297,7 @@ section {
 }
 .contact-form input, .contact-form textarea {
     border: 1px solid #024e76;
+    border-radius: 15px;
     display: block;
     padding: 7px 15px;
     font-size: 16px;
@@ -268,21 +305,73 @@ section {
     width: 100%;
     margin-bottom: 15px;
     margin-top: 5px;
+    background-color: rgba(255,255,255, 0.75);
+}
+.contact-form input:focus, .contact-form textarea:focus {
+    background-color: rgba(255,255,255, 1);
+    outline: none;
 }
 .contact-form button {
     width: 100%;
     border: none;
+    border-radius: 15px;
     background: #fce138;
     color: #024e76;
     text-align: center;
     padding: 15px 0;
     font-size: 16px;
 }
+
+/* service plan grid starts here */
+.services {
+    background: #fce138;
+}
+.service-grid-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.service-grid-container {
+    background: lightyellow;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 4fr);
+    grid-template-rows: repeat(5, 1fr) 2fr;
+    border: 2px solid #024e76;
+    color: #024e76;
+    font-size: 1.2rem;
+}
+.service-grid-item {
+    padding: 15px 0;
+    border: 2px solid #024e76;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.service-grid-item.basic {
+    grid-column: 2 / span 1;
+}
+.service-grid-item.both {
+    grid-column: 2 / span 2;
+}
+.service-grid-item.cancel {
+    writing-mode: vertical-lr;
+    grid-column: 1;
+    grid-row: 1 / -1;
+    transform: rotate(180deg);
+}
+.grid-head, .grid-price, .service-grid-item.cancel {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 /* media query for smaller desktop screens and smaller */
 @media screen and (max-width: 980px) {
     header {
         padding-bottom: 0;
         justify-content: center;
+        position: relative;
     }
     header h1 {
         width: 100%;
@@ -340,49 +429,21 @@ section {
     .step-text {
         flex: 100%;
     }
-}
-
-.services {
-    background: #fce138;
-}
-.service-grid-wrapper {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-.service-grid-container {
-    background: lightyellow;
-    width: 80%;
-    display: grid;
-    grid-template-columns: 1fr repeat(2, 4fr);
-    grid-template-rows: repeat(5, 1fr) 2fr;
-    border: 2px solid #024e76;
-    color: #024e76;
-    font-size: 1.2rem;
-}
-.service-grid-item {
-    padding: 15px 0;
-    border: 2px solid #024e76;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.service-grid-item.basic {
-    grid-column: 2 / span 1;
-}
-.service-grid-item.both {
-    grid-column: 2 / span 2;
-}
-.service-grid-item.cancel {
-    writing-mode: vertical-lr;
-    grid-column: 1;
-    grid-row: 1 / -1;
-    transform: rotate(180deg);
-}
-.grid-head, .grid-price, .service-grid-item.cancel {
-    font-size: 1.5rem;
-    font-weight: bold;
+    .service-grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .service-grid-item.basic {
+        grid-column: 1;
+    }
+    .service-grid-item.both {
+        grid-column: 1 / -1;
+    }
+    .service-grid-item.cancel {
+        transform: none;
+        writing-mode: unset;
+        grid-column: 1 / -1;
+        grid-row: -1;
+    }
 }
 
 /*media query for mobile phones and smaller */
@@ -407,20 +468,5 @@ section {
     }
     .contact-form {
         order: 3;
-    }
-    .service-grid-container {
-        grid-template-columns: 1fr 1fr;
-    }
-    .service-grid-item.basic {
-        grid-column: 1;
-    }
-    .service-grid-item.both {
-        grid-column: 1 / -1;
-    }
-    .service-grid-item.cancel {
-        transform: none;
-        writing-mode: unset;
-        grid-column: 1 / -1;
-        grid-row: -1;
     }
 }
